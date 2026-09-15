@@ -1,0 +1,176 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "sin errores JS en carga",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sin longtasks (>50ms) durante ~2s de onda del hero",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "canvas del hero tiene tamaño",
+      "pass": true
+    },
+    {
+      "name": "aviso de cookies visible en primera visita",
+      "pass": true
+    },
+    {
+      "name": "botón \"Entendido\" oculta el aviso (display:none real)",
+      "pass": true,
+      "detail": "display=none"
+    },
+    {
+      "name": "aviso de cookies recordado tras recargar",
+      "pass": true
+    },
+    {
+      "name": "CTAs del hero y cabecera reciben el clic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mapa sin iframe antes del clic",
+      "pass": true
+    },
+    {
+      "name": "mapa cargado tras el clic (google.com/maps?q=…&output=embed)",
+      "pass": true,
+      "detail": "https://www.google.com/maps?q=Kine+Sa%C3%BAde+Carballo%2C+R%C3%BAa+Luis+Calvo+27%2C+15102+Carballo%2C+A+Coru%C3%B1a&output=embed"
+    },
+    {
+      "name": "sin longtasks (>50ms) durante el scroll completo",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "sin errores JS tras el scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sin scroll horizontal a 1440 px",
+      "pass": true,
+      "detail": "scrollWidth=1440"
+    },
+    {
+      "name": "contadores en sus valores (5, 0 mm, 19, 5,0)",
+      "pass": true,
+      "detail": "5/0/19/5,0"
+    },
+    {
+      "name": "sticky stack: la primera tarjeta cambia de escala al entrar la segunda",
+      "pass": true,
+      "detail": "scale=0.940"
+    },
+    {
+      "name": "galería de tecnología: el track se desplaza dentro del pin",
+      "pass": true,
+      "detail": "-1227 -> -2563"
+    },
+    {
+      "name": "al menos una firma de onda se ha dibujado",
+      "pass": true,
+      "detail": "dibujadas=8"
+    },
+    {
+      "name": "reduced-motion: sin Lenis",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion: reveals ya visibles (opacity 1)",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion: marquee sin animación",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "reduced-motion: contadores en su valor final",
+      "pass": true,
+      "detail": "5/0/19/5,0"
+    },
+    {
+      "name": "sin JS: contenido del hero visible",
+      "pass": true
+    },
+    {
+      "name": "sin JS: navegación visible",
+      "pass": true
+    },
+    {
+      "name": "sin JS: canvas oculto (no rompe el layout)",
+      "pass": true
+    },
+    {
+      "name": "sin scroll horizontal a 400 px",
+      "pass": true,
+      "detail": "scrollWidth=400"
+    },
+    {
+      "name": "sin errores JS en móvil 400",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menú móvil abre (flex) y cierra (none)",
+      "pass": true,
+      "detail": "flex/none"
+    },
+    {
+      "name": "sin scroll horizontal a 360 px",
+      "pass": true,
+      "detail": "scrollWidth=360"
+    },
+    {
+      "name": "sin errores JS en móvil 360",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "longtasks": {
+    "load": [
+      {
+        "d": 232,
+        "t": 201
+      },
+      {
+        "d": 92,
+        "t": 433
+      },
+      {
+        "d": 55,
+        "t": 630
+      },
+      {
+        "d": 70,
+        "t": 685
+      }
+    ],
+    "hero": [],
+    "scroll": []
+  },
+  "screenshots": [
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-inicio.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-diamagnetica.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-tratamientos.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-tecnologia.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-seguros.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-resenas.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-contacto.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-site-footer.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-inicio.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-diamagnetica.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-tratamientos.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-tecnologia.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-seguros.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-resenas.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-contacto.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-site-footer.png"
+  ]
+}

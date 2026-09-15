@@ -1,0 +1,12 @@
+{
+  "name": "KineSaúde · Clínica de Fisioterapia & Centro Diamagnético",
+  "short_name": "KineSaúde",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#15191c",
+  "theme_color": "#15191c",
+  "icons": [
+    { "src": "assets/img/logo/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/logo/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

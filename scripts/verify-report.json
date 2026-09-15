@@ -70,7 +70,7 @@
     {
       "name": "galería de tecnología: el track se desplaza dentro del pin",
       "pass": true,
-      "detail": "-1227 -> -2563"
+      "detail": "-1228 -> -2563"
     },
     {
       "name": "al menos una firma de onda se ha dibujado",
@@ -136,20 +136,12 @@
   "longtasks": {
     "load": [
       {
-        "d": 232,
-        "t": 201
+        "d": 138,
+        "t": 135
       },
       {
-        "d": 92,
-        "t": 433
-      },
-      {
-        "d": 55,
-        "t": 630
-      },
-      {
-        "d": 70,
-        "t": 685
+        "d": 61,
+        "t": 301
       }
     ],
     "hero": [],

@@ -3,11 +3,12 @@
 Plantilla nº 3 de la familia **fisioterapia** de la librería WEBS NEGOCIOS
 (junto a AURA Carballo y Fisioterapia Javi Teijeiro), y estructuralmente
 distinta de ambas: concepto **"Sintoniza con el bienestar"** — señal,
-frecuencia, onda. Grafito + teal + un acento ámbar mínimo, tipografía
-Outfit + JetBrains Mono, hero de canvas con sinusoides interactivas (no
-partículas, no pinceladas, no agua), galería horizontal fijada para los 9
-equipos de electroterapia con una "firma de onda" SVG distinta por aparato,
-y la Terapia Diamagnética como sección protagonista propia.
+frecuencia, onda. Grafito + un verde salvia + un acento terracota (paleta
+tomada del logo real del cliente, ver "Logo" abajo), tipografía Outfit +
+JetBrains Mono, hero de canvas con sinusoides interactivas (no partículas,
+no pinceladas, no agua), galería horizontal fijada para los 9 equipos de
+electroterapia con una "firma de onda" SVG distinta por aparato, y la
+Terapia Diamagnética como sección protagonista propia.
 
 - HTML/CSS/JS estático, sin frameworks ni build. Sirve la carpeta o abre `index.html`.
 - Responsive desde 360 px. Sin cookies de terceros (el mapa de Google solo se carga al pulsar "Ver mapa").
@@ -47,14 +48,27 @@ de cada técnica de electroterapia, no afirmaciones específicas de la clínica.
 
 ## Logo
 
-El logo original (círculo con wordmark fino "Kine Saúde" + "carballo"
-subrayado) se ha rehecho para verse premium manteniendo su idea: un anillo
-fino que se "abre" en la parte superior por donde cruza una pequeña onda de
-señal, con un punto ámbar como "punto de sintonía". Wordmark recompuesto en
-Outfit (peso ligero + "Saúde" en semibold) en vez de trazar la fuente
-redondeada original, que no venía como archivo vectorial.
+El cliente envió una muestra más clara del logo real el 15-09-2026: círculo
+en tinta con wordmark fino "Kine" / "Saúde" apilado, un punto **verde
+salvia** sobre la "i" de "Kine" y un guion **terracota** junto a "carballo"
+en minúsculas. Al no venir como archivo vectorial (era una imagen de trazo
+irregular, tipo dibujo a mano), se ha rehecho limpio manteniendo la misma
+idea: un anillo fino que se "abre" en la parte superior por donde cruza una
+pequeña onda de señal, con un punto de sintonía en el mismo verde salvia
+muestreado del original (`#6C8C7E`); el guion junto a "carballo" usa el
+terracota real (`#9C7364`). Wordmark recompuesto en Outfit (peso ligero +
+"Saúde" en semibold) en vez de trazar la tipografía redondeada original.
+
+**Estos dos colores (verde salvia `#6C8C7E` y terracota `#9C7364`), tomados
+directamente por muestreo de píxeles del logo real, sustituyen a la pareja
+teal/ámbar usada en la primera versión de la web** — toda la web (botones,
+subrayados, ondas del hero, firmas de onda de los equipos, chips, etc.) se
+recoloreó para ir acorde con el logo real, no al revés. El grafito de fondo
+y el blanco-niebla de las secciones informativas se mantienen igual.
+
 `assets/img/logo/mark.svg` es el símbolo; `scripts/generate_brand.js`
-(Playwright) genera los favicons y la imagen Open Graph a partir de él.
+(Playwright) genera los favicons (fondo claro, como el logo real sobre
+papel) y la imagen Open Graph a partir de él.
 
 ## Fotografía
 

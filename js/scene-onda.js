@@ -48,9 +48,9 @@
     }
     const grad = ctx.createLinearGradient(0, 0, w, 0);
     const mx = Math.max(0, Math.min(1, mouseX));
-    grad.addColorStop(Math.max(0, mx - 0.22), `rgba(42,124,146,${layer.alpha})`);
-    grad.addColorStop(mx, `rgba(217,160,102,${Math.min(1, layer.alpha + boost * 0.5)})`);
-    grad.addColorStop(Math.min(1, mx + 0.22), `rgba(100,156,176,${layer.alpha})`);
+    grad.addColorStop(Math.max(0, mx - 0.22), `rgba(108,140,126,${layer.alpha})`);
+    grad.addColorStop(mx, `rgba(156,115,100,${Math.min(1, layer.alpha + boost * 0.5)})`);
+    grad.addColorStop(Math.min(1, mx + 0.22), `rgba(143,168,155,${layer.alpha})`);
     ctx.strokeStyle = grad;
     ctx.lineWidth = layer.width * dpr === layer.width ? layer.width : layer.width; // dpr handled by transform
     ctx.lineJoin = "round";

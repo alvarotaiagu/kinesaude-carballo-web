@@ -85,7 +85,10 @@ en cada `figcaption`. IDs de Pexels usados: equipo `7789605`, manos
    `stroke-dashoffset` al entrar en el track.
 5. **Seguros** (`#seguros`): chips Sanitas / Occidental / Mapfre + "otras compañías".
 6. **Reseñas** (`#resenas`): 5,0 ★ / 19 reseñas reales como dato grande;
-   3 tarjetas de reseña marcadas `RESEÑA PENDIENTE` (sin inventar texto).
+   3 reseñas reales de Google (texto tal cual, solo limpieza ligera de
+   erratas), con el nombre del cliente anonimizado a nombre + inicial
+   (salvo una dejada por un negocio, "Ferretería Maneiro", que se
+   mantiene completo por no ser el nombre de una persona).
 7. **Contacto** (`#contacto`): datos, horario semanal con calculadora de
    abierto/cerrado en vivo (Europe/Madrid, dos franjas por día laborable),
    bloque de reserva online (mnprogram.net), mapa de Google por consentimiento,
@@ -98,7 +101,6 @@ Divisor recurrente: una línea de señal SVG entre secciones que se aplana
 ## Lo que falta por confirmar con la clínica
 
 - **Enlace exacto de reserva** en mnprogram.net (de momento el botón lleva a `mnprogram.net`, su plataforma, no a la agenda concreta de KineSaúde).
-- **Textos reales de las 3 reseñas** de Google (solo se muestra la valoración agregada 5,0/19, verificada).
 - **Nombres y titulaciones del equipo** (no hay sección de equipo hasta tener estos datos).
 - **Fotografía real** de la clínica y del equipo (Bomba CTU Mega 20 incluida) para sustituir la fotografía de ambiente.
 - **Precios** de cualquier tratamiento (no se ha mostrado ninguno).

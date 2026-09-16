@@ -14,7 +14,7 @@
   /* ---------- Lenis (smooth scroll) ---------- */
   let lenis = null;
   if (!reduce && gsapReady && typeof window.Lenis !== "undefined") {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.18, wheelMultiplier: 1, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -326,7 +326,7 @@
       x: () => -amount(),
       ease: "none",
       scrollTrigger: {
-        trigger: pin, start: "top top", end: "bottom bottom", scrub: 0.6,
+        trigger: pin, start: "top top", end: "bottom bottom", scrub: true,
         invalidateOnRefresh: true,
         onUpdate: (self) => { if (bar) bar.style.width = `${(self.progress * 100).toFixed(1)}%`; },
       },

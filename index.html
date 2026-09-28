@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js">
+<html lang="es" class="no-js densidad-onda">
 <head>
 <meta charset="utf-8">
 <!-- Copia de vista previa. No debe indexarse: competiria en Google con
@@ -43,11 +43,50 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1">
-<script>document.documentElement.classList.remove("no-js");</script>
+<link rel="stylesheet" href="css/style.css?v=c8f7488f">
+<script>
+/* Bloqueante a propósito: quita no-js antes del primer pintado y resuelve la
+   densidad. [MANDO DE MAQUETA] — la parte de la densidad es eliminable, ver README. */
+(function () {
+  var h = document.documentElement;
+  h.classList.remove("no-js");
+  /* red de seguridad por si main.js no llega: la cortina nunca tapa la página */
+  setTimeout(function () {
+    var c = document.getElementById("cortina");
+    if (c) c.classList.add("fuera");
+    h.classList.remove("cortina-activa");
+  }, 8000);
+  /* la densidad guardada solo cuenta en modo revisión (?revision) */
+  if (!/[?&]revision\b/.test(location.search)) return;
+  try {
+    var d = localStorage.getItem("kinesaude-densidad");
+    if (d === "sobria" || d === "onda") {
+      h.classList.remove("densidad-onda", "densidad-sobria");
+      h.classList.add("densidad-" + d);
+    }
+  } catch (e) {}
+})();
+</script>
+<noscript><style>.cortina { display: none !important; }</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- ===== Cortina de entrada: «sintonizar». Ruido que se afina, nombre, la onda
+     se aplana y la pantalla se abre en dos por esa línea ===== -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="cortina__mitad cortina__mitad--arriba" id="cortina-arriba">
+    <svg class="cortina__labio" viewBox="0 0 100 10" preserveAspectRatio="none" focusable="false"><path id="cortina-labio-arriba" d="M0 0H100V0Q50 0 0 0Z"/></svg>
+  </div>
+  <div class="cortina__mitad cortina__mitad--abajo" id="cortina-abajo">
+    <svg class="cortina__labio" viewBox="0 0 100 10" preserveAspectRatio="none" focusable="false"><path id="cortina-labio-abajo" d="M0 10H100V10Q50 10 0 10Z"/></svg>
+  </div>
+  <div class="cortina__centro" id="cortina-centro">
+    <svg class="cortina__onda" viewBox="0 0 1000 200" preserveAspectRatio="none" focusable="false"><polyline id="cortina-onda" points="0,100 1000,100"/></svg>
+    <p class="cortina__marca"><span class="cortina__nombre"><b>Kine</b><b>Saúde</b></span><span class="cortina__pie" id="cortina-pie">sintonizando · carballo</span></p>
+  </div>
+</div>
+<div class="grano" aria-hidden="true"></div>
 
 <!-- Aviso de cookies: sin cookies de terceros; el mapa de Google solo si lo pides -->
 <div class="cookie-banner" hidden role="region" aria-label="Aviso de cookies">
@@ -76,6 +115,7 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span></span></button>
     </div>
   </div>
+  <span class="scroll-progress" aria-hidden="true"></span>
 </header>
 <div class="mobile-menu" id="menu-movil" hidden>
   <nav aria-label="Secciones (móvil)">
@@ -119,6 +159,12 @@
         <span>Centro Diamagnético</span>
         <span>Reg. Sanitario C-15-004970</span>
       </div>
+      <ul class="hero-cifras" aria-label="KineSaúde en cifras">
+        <li><b>5,0</b><span>★ en Google</span></li>
+        <li><b>19</b><span>reseñas</span></li>
+        <li><b>9</b><span>equipos de electroterapia</span></li>
+        <li><b>4</b><span>tratamientos manuales</span></li>
+      </ul>
     </div>
   </div>
   <span class="scroll-hint" aria-hidden="true">Baja</span>
@@ -131,6 +177,9 @@
     <span>Fisioterapia manual</span><span>Centro Diamagnético</span><span>Tratamiento deportivo</span><span>Rúa Luis Calvo, 27</span><span>Rehabilitación funcional</span><span>5,0 en Google</span><span>Electroterapia combinada</span><span>Reg. C-15-004970</span><span>Mecanoterapia</span><span>Carballo</span>
   </div>
 </div>
+<div class="franja-datos" aria-label="Datos de contacto">
+  <div class="wrap"><span>Rúa Luis Calvo, 27 · Carballo</span><a href="tel:+34668528969">668 52 89 69</a><span>L–V 9:00–14:00 · 16:00–21:00</span><span>Reg. C-15-004970</span></div>
+</div>
 
 <svg class="signal-divider is-dense" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C60,5 90,55 150,30 C210,5 240,55 300,30 C360,5 390,55 450,30 C510,5 540,55 600,30 C660,5 690,55 750,30 C810,5 840,55 900,30 C960,5 990,55 1050,30 C1110,5 1140,55 1200,30" vector-effect="non-scaling-stroke"/></svg>
 
@@ -138,7 +187,7 @@
 <section class="section diamag" id="diamagnetica" aria-labelledby="diamag-titulo">
   <div class="wrap">
     <div class="diamag-grid">
-      <figure class="diamag-media tune">
+      <figure class="diamag-media revela">
         <img src="assets/img/photos/equipo-1600.jpg" srcset="assets/img/photos/equipo-900.jpg 900w, assets/img/photos/equipo-1600.jpg 1600w" sizes="(min-width: 62rem) 45vw, 90vw" alt="Detalle de un equipo de electroterapia compacto, fotografía de ambiente" loading="lazy">
         <figcaption class="diamag-tag">Fotografía de ambiente · no es el equipo real de la clínica</figcaption>
       </figure>
@@ -177,6 +226,7 @@
     <div class="stack-rail" aria-hidden="true"><ul><li class="is-on"></li><li></li><li></li><li></li></ul></div>
 
     <article class="panel panel-a" data-tone="oscuro">
+      <span class="panel-marca" aria-hidden="true">01</span>
       <div class="wrap panel-inner">
         <div class="panel-text">
           <span class="panel-num">01 / 04</span>
@@ -184,11 +234,12 @@
           <h3>Fisioterapia manual <b>personalizada</b></h3>
           <p>Valoración y tratamiento con técnicas manuales adaptadas a cada caso: movilizaciones articulares, técnicas de tejido blando y ejercicio terapéutico dirigido.</p>
         </div>
-        <figure class="panel-media"><img src="assets/img/photos/manos-1600.jpg" srcset="assets/img/photos/manos-900.jpg 900w, assets/img/photos/manos-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Manos de fisioterapeuta sobre cuello y hombro, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
+        <figure class="panel-media revela"><img src="assets/img/photos/manos-1600.jpg" srcset="assets/img/photos/manos-900.jpg 900w, assets/img/photos/manos-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Manos de fisioterapeuta sobre cuello y hombro, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
       </div>
     </article>
 
     <article class="panel panel-b">
+      <span class="panel-marca" aria-hidden="true">02</span>
       <div class="wrap panel-inner">
         <div class="panel-text">
           <span class="panel-num">02 / 04</span>
@@ -196,11 +247,12 @@
           <h3>Tratamiento <b>deportivo</b></h3>
           <p>Prevención y recuperación de lesiones para quien entrena o compite: readaptación funcional, control de carga y vuelta progresiva a la actividad.</p>
         </div>
-        <figure class="panel-media"><img src="assets/img/photos/deporte-1600.jpg" srcset="assets/img/photos/deporte-900.jpg 900w, assets/img/photos/deporte-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Manos sobre una rodilla con banda deportiva, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
+        <figure class="panel-media revela"><img src="assets/img/photos/deporte-1600.jpg" srcset="assets/img/photos/deporte-900.jpg 900w, assets/img/photos/deporte-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Manos sobre una rodilla con banda deportiva, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
         </div>
     </article>
 
     <article class="panel panel-c" data-tone="oscuro">
+      <span class="panel-marca" aria-hidden="true">03</span>
       <div class="wrap panel-inner">
         <div class="panel-text">
           <span class="panel-num">03 / 04</span>
@@ -208,11 +260,12 @@
           <h3>Rehabilitación <b>funcional</b></h3>
           <p>Recuperación del movimiento y de la fuerza tras una lesión o cirugía, con progresiones de ejercicio pensadas para volver al gesto cotidiano o deportivo.</p>
         </div>
-        <figure class="panel-media"><img src="assets/img/photos/mov-1600.jpg" srcset="assets/img/photos/mov-900.jpg 900w, assets/img/photos/mov-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Movilización de tobillo y pie sobre camilla, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
+        <figure class="panel-media revela"><img src="assets/img/photos/mov-1600.jpg" srcset="assets/img/photos/mov-900.jpg 900w, assets/img/photos/mov-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Movilización de tobillo y pie sobre camilla, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
       </div>
     </article>
 
     <article class="panel panel-d" data-tone="oscuro">
+      <span class="panel-marca" aria-hidden="true">04</span>
       <div class="wrap panel-inner">
         <div class="panel-text">
           <span class="panel-num">04 / 04</span>
@@ -220,7 +273,7 @@
           <h3><b>Mecanoterapia</b></h3>
           <p>Ejercicio asistido con aparataje específico para ganar rango de movimiento, fuerza y control, dentro de un plan de rehabilitación progresivo.</p>
         </div>
-        <figure class="panel-media"><img src="assets/img/photos/sala-1600.jpg" srcset="assets/img/photos/sala-900.jpg 900w, assets/img/photos/sala-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Sala de tratamiento minimalista, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
+        <figure class="panel-media revela"><img src="assets/img/photos/sala-1600.jpg" srcset="assets/img/photos/sala-900.jpg 900w, assets/img/photos/sala-1600.jpg 1600w" sizes="(min-width: 56rem) 40vw, 90vw" alt="Sala de tratamiento minimalista, fotografía de ambiente" loading="lazy"><figcaption>Fotografía de ambiente</figcaption></figure>
       </div>
     </article>
   </div>
@@ -230,17 +283,20 @@
 
 <!-- ===== 4. TECNOLOGÍA · galería horizontal ===== -->
 <section class="tecnologia" id="tecnologia" aria-labelledby="tec-titulo">
-  <div class="tec-heading">
-    <span class="kicker tune">electroterapia combinada</span>
-    <h2 class="display tune" id="tec-titulo" data-split>Nueve firmas de <strong>señal</strong></h2>
-    <p class="lead tune">Cada equipo trabaja en una frecuencia distinta. Esta es la onda de cada uno.</p>
-  </div>
   <div class="tec-pin">
     <div class="tec-sticky">
+      <div class="tec-grid" aria-hidden="true"></div>
+      <div class="tec-heading">
+        <div>
+          <span class="kicker tune">electroterapia combinada</span>
+          <h2 class="display tune" id="tec-titulo" data-split>Nueve firmas de <strong>señal</strong></h2>
+        </div>
+        <p class="lead tune">Cada equipo trabaja en una frecuencia distinta. Esta es la onda de cada uno.</p>
+      </div>
       <div class="tec-track">
 
         <article class="tec-card">
-          <span class="idx">01 / 09</span>
+          <span class="idx"><b>01</b><small>/ 09</small></span>
           <span class="tec-cat">radiofrecuencia</span>
           <h3>TecnoSix</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,10 75,40 C100,70 125,70 150,40 C175,10 200,10 225,40 C250,70 275,70 300,40"/></svg>
@@ -248,7 +304,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">02 / 09</span>
+          <span class="idx"><b>02</b><small>/ 09</small></span>
           <span class="tec-cat">microelectrólisis</span>
           <h3>EPT</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 L50,40 L54,6 L58,40 L140,40 L144,6 L148,40 L230,40 L234,6 L238,40 L300,40"/></svg>
@@ -256,7 +312,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">03 / 09</span>
+          <span class="idx"><b>03</b><small>/ 09</small></span>
           <span class="tec-cat">campos magnéticos</span>
           <h3>Magnetoterapia</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C50,14 100,14 150,50 C200,86 250,86 300,50"/></svg>
@@ -264,7 +320,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">04 / 09</span>
+          <span class="idx"><b>04</b><small>/ 09</small></span>
           <span class="tec-cat">calor profundo</span>
           <h3>Termoterapia profunda</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C15,33 30,33 45,40 C65,50 85,20 105,40 C130,64 155,10 180,40 C205,66 230,8 255,40 C270,56 285,22 300,40"/></svg>
@@ -272,7 +328,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">05 / 09</span>
+          <span class="idx"><b>05</b><small>/ 09</small></span>
           <span class="tec-cat">vibración mecánica</span>
           <h3>Ultrasonido</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0 q7.5,-16 15,0 q7.5,16 15,0"/></svg>
@@ -280,7 +336,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">06 / 09</span>
+          <span class="idx"><b>06</b><small>/ 09</small></span>
           <span class="tec-cat">pulsos de alta energía</span>
           <h3>Ondas de choque</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 L70,40 L74,4 L80,54 L86,40 L160,40 L164,4 L170,54 L176,40 L250,40 L254,4 L260,54 L266,40 L300,40"/></svg>
@@ -288,7 +344,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">07 / 09</span>
+          <span class="idx"><b>07</b><small>/ 09</small></span>
           <span class="tec-cat">electroanalgesia</span>
           <h3>TENS</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 L20,40 L20,14 L45,14 L45,40 L90,40 L90,14 L115,14 L115,40 L160,40 L160,14 L185,14 L185,40 L230,40 L230,14 L255,14 L255,40 L300,40"/></svg>
@@ -296,7 +352,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">08 / 09</span>
+          <span class="idx"><b>08</b><small>/ 09</small></span>
           <span class="tec-cat">compresión secuencial</span>
           <h3>Presoterapia</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,58 L30,58 L30,48 L60,48 L60,38 L90,38 L90,28 L120,28 L120,18 L150,18 L150,28 L180,28 L180,38 L210,38 L210,48 L240,48 L240,58 L270,58 L300,58"/></svg>
@@ -304,7 +360,7 @@
         </article>
 
         <article class="tec-card">
-          <span class="idx">09 / 09</span>
+          <span class="idx"><b>09</b><small>/ 09</small></span>
           <span class="tec-cat">punción ecoguiada</span>
           <h3>Tratamiento invasivo eco-guiado</h3>
           <svg class="tec-wave" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 L150,40 L158,12 L166,40 L300,40"/></svg>
@@ -317,8 +373,8 @@
         </aside>
 
       </div>
+      <div class="tec-foot" aria-hidden="true"><span class="tec-readout">01 / 09</span><div class="tec-progress"><div class="tec-progress-bar"></div></div><span>nueve equipos</span></div>
     </div>
-    <div class="tec-progress" aria-hidden="true"><div class="tec-progress-bar"></div></div>
   </div>
   <p class="tec-hint">Desliza para recorrer los nueve equipos</p>
 </section>
@@ -350,27 +406,27 @@
       <div class="resenas-meta tune">
         <span class="stars" aria-hidden="true">★★★★★</span>
         <span class="count">19 reseñas en Google</span>
-        <h2 class="display" id="resenas-titulo" style="font-size:1.4rem;margin-top:0.4rem;">Lo que sintoniza con quien viene</h2>
+        <h2 class="display" id="resenas-titulo">Lo que sintoniza con quien viene</h2>
       </div>
     </div>
     <div class="resenas-grid">
-      <article class="resena-card tune">
+      <article class="resena-card">
         <span class="stars" aria-hidden="true">★★★★★</span>
         <p>"Llegué a KineSaúde por azar, necesitaba urgentemente una cita. Una profesional diez, empática y con un trato humano difícil de encontrar. Llevo tres sesiones y el dolor que era insoportable ha disminuido. Muy agradecida."</p>
         <footer><span>Manuela A.</span><span>hace 2 meses</span></footer>
       </article>
-      <article class="resena-card tune">
+      <article class="resena-card">
         <span class="stars" aria-hidden="true">★★★★★</span>
         <p>"Mi experiencia es muy parecida a las descritas: la inflamación que tenía en los isquios afectaba a otras funciones musculares y llevaba meses con ese dolor. Escogí al azar por internet y, sin conocerla, opté por este centro. Tras llevarle el informe médico, me recomendó la bomba como opción más rápida para la recuperación. Después de 4 sesiones complementando con otros tratamientos fisioterapéuticos, desapareció el dolor. 100% recomendable como profesional y persona."</p>
         <footer><span>Ferretería Maneiro</span><span>hace 1 año</span></footer>
       </article>
-      <article class="resena-card tune">
+      <article class="resena-card">
         <span class="stars" aria-hidden="true">★★★★★</span>
         <p>"Fui a esta clínica por una amiga, recomendada por mi problema de espalda que llevo tiempo arrastrando, a probar la máquina de bomba diamagnética. La verdad es que con dos sesiones tengo la espalda muchísimo mejor. El trato es súper bueno y familiar, siempre te va explicando qué te va a hacer y para qué sirve cada modo que utiliza. Lo recomiendo."</p>
         <footer><span>Estefania M.</span><span>hace 1 año</span></footer>
       </article>
     </div>
-    <p class="tune" style="margin-top:1.6rem;"><a class="btn btn-linea" style="color:var(--tinta)" href="https://www.google.com/search?q=KineSa%C3%BAde+Carballo+opiniones" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
+    <p class="tune resenas-mas"><a class="btn btn-linea" href="https://www.google.com/search?q=KineSa%C3%BAde+Carballo+opiniones" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
   </div>
 </section>
 
@@ -491,14 +547,30 @@
     <button class="legal-close" type="button">Cerrar</button>
     <h3>Cookies</h3>
     <p>Esta web no utiliza cookies de terceros. Guardamos únicamente en tu navegador (localStorage) que ya viste el aviso de cookies.</p>
+    <!-- [MANDO DE MAQUETA] borrar el párrafo siguiente al entregar -->
+    <p>Si abres esta maqueta en modo revisión (<code>?revision</code>), también guardamos en tu navegador la versión elegida (<code>kinesaude-densidad</code>).</p>
     <p>El mapa de la sección de contacto pertenece a Google y solo se carga si pulsas el botón "Ver mapa" — a partir de ese clic, Google puede aplicar su propia política de cookies.</p>
   </div>
 </dialog>
 
+<!-- ===========================================================================
+     [MANDO DE MAQUETA] — SOLO REVISIÓN INTERNA. NO PUBLICAR.
+     Borrar este bloque, el bloque CSS marcado igual en style.css, el bloque
+     JS marcado igual en main.js y la parte de densidad del script del <head>.
+     =========================================================================== -->
+<div class="mando" id="mando" hidden>
+  <span class="mando__titulo">Versión</span>
+  <div class="mando__botones" role="group" aria-label="Densidad visual de la maqueta">
+    <button type="button" data-densidad="onda" aria-pressed="true">Onda</button>
+    <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <span class="mando__pie">Dos versiones de la misma web</span>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-<script src="js/scene-onda.js"></script>
-<script src="js/main.js"></script>
+<script src="js/scene-onda.js?v=e4bbda38"></script>
+<script src="js/main.js?v=39723f11"></script>
 </body>
 </html>

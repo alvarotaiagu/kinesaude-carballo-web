@@ -10,10 +10,49 @@ no pinceladas, no agua), galería horizontal fijada para los 9 equipos de
 electroterapia con una "firma de onda" SVG distinta por aparato, y la
 Terapia Diamagnética como sección protagonista propia.
 
-- HTML/CSS/JS estático, sin frameworks ni build. Sirve la carpeta o abre `index.html`.
+- HTML/CSS/JS estático, sin frameworks ni build. `node scripts/servir.mjs` → http://127.0.0.1:8931/ (por HTTP, no con doble clic).
 - Responsive desde 360 px. Sin cookies de terceros (el mapa de Google solo se carga al pulsar "Ver mapa").
-- Motion: Lenis (único motor de scroll suave) + GSAP ScrollTrigger vía CDN (mismas versiones que el resto de la librería), con bypass completo bajo `prefers-reduced-motion`.
-- Verificado con Playwright (`scripts/verify.js`): 0 errores JS, 0 longtasks >50ms durante ~2s de la onda del hero y durante el scroll completo, cookies/mapa/menú/sticky-stack/galería funcionando, reduced-motion, sin-JS, y sin scroll horizontal a 1440/400/360 px. Ver `scripts/verify-report.json` y las capturas en `screenshots/`.
+- Motion: Lenis (único motor de scroll suave) + GSAP ScrollTrigger vía CDN (mismas versiones que el resto de la librería). Dos banderas: `gsapReady` (hay librería) y `motion` (además no hay `prefers-reduced-motion`); se apaga el movimiento, no el contenido. Con el CDN caído la página se ve entera.
+- Verificado con Playwright (`node scripts/verify.js`, levanta su propio servidor): cortina a medias y en las tres pasadas, 0 errores JS, 0 longtasks >50 ms en el hero y en el scroll completo, cursor, cabecera, cookies, mapa, pila paso a paso, galería, dos densidades, reduced-motion, sin JS, sin GSAP y tres móviles. Ver `scripts/verify-report.json` y `screenshots/`.
+- Antes de cada commit que toque CSS o JS: `node scripts/versionar.mjs` (huella `?v=` contra la caché de 10 min de Pages).
+
+## Revisión 2026-09-28: más moderna y premium
+
+La clienta quería actualizar la web. Se mantuvo la estructura y todos los
+datos; se cambió el acabado y el movimiento:
+
+- **Arreglos.** Tres títulos de sección (Diamagnética, Tratamientos,
+  Tecnología) salían al tamaño por defecto del navegador: ahora todos los
+  `h2.display` comparten escala. En móvil los paneles de tratamientos no
+  cabían en pantalla y la foto quedaba cortada: se desapilan por debajo de
+  56rem (CSS `position: relative` + `gsap.matchMedia` sin escala ni velo).
+- **Cortina «sintonizar».** Fondo salvia oscuro (`--cortina`, distinto del
+  grafito del hero): una línea de osciloscopio con ruido se afina hasta ser
+  una onda limpia, aparece el nombre, la onda se aplana y la pantalla se abre
+  en dos mitades por esa línea, con los labios abombados en `expo.inOut`.
+  Retirada garantizada: `.fuera` con `!important`, sin JS no existe, con
+  movimiento reducido no aparece, y red de seguridad de 8 s en el `<head>`.
+  La intro del hero espera al evento `cortina-abriendose`.
+- **Cursor propio.** Punto salvia + aro; sobre el hero el aro crece y dice
+  «sintoniza», sobre enlaces y botones se rellena. El del sistema se oculta
+  solo cuando el propio ya se ve (`html.con-cursor`); nada en táctil.
+- **Hero.** Siete ondas más gruesas y presentes, con brillo simulado (el
+  mismo trazo pintado ancho y tenue debajo, sin `filter` ni `shadowBlur`),
+  que se doblan hacia el cursor y se hunden y apagan con el scroll
+  (`kineOnda.setScroll`). Titular más grande y apretado con «bienestar» en
+  degradado vertical (por letra, para que el corte del char-reveal no se
+  note), etiquetas que flotan y salida del contenido con scrub.
+- **Secciones.** Fotos con revelado por recorte (`clip-path`) y acercamiento;
+  paneles con número gigante como marca de agua y texto escalonado al
+  activarse; galería de tecnología con el título dentro del bloque fijado,
+  tarjetas con índice grande y borde luminoso que se encogen lejos del
+  centro y se marcan (`is-center`) al llegar, lectura «0N / 09», rejilla de
+  osciloscopio con paralaje propio; reseñas con comillas, entrada escalonada
+  e inclinación 3D sutil; chips de seguros con barrido salvia; caja de
+  reserva con halo.
+- **Global.** Grano fijo a 5,5 % (SVG `feTurbulence` en un `data:` URI, sin
+  blend), cabecera que se esconde al bajar y vuelve al subir con barra de
+  progreso, y el mando de dos densidades de abajo.
 
 ## Reemplazando la web anterior
 
@@ -84,10 +123,10 @@ en cada `figcaption`. IDs de Pexels usados: equipo `7789605`, manos
 
 ## Estructura (propia, no calcada de AURA ni de Javi Teijeiro)
 
-1. **Hero** (`#inicio`): canvas de sinusoides superpuestas en teal que
-   respiran despacio y se modulan por la posición del cursor (gradiente que
-   vira a ámbar cerca del puntero — "sintonizar"), titular con char-reveal,
-   etiquetas mono flotantes y CTA magnético "Reservar online".
+1. **Hero** (`#inicio`): canvas de siete sinusoides superpuestas en salvia
+   que respiran despacio, se modulan y doblan hacia el cursor ("sintonizar")
+   y se hunden con el scroll; titular con char-reveal y degradado, etiquetas
+   mono que flotan y CTA magnético "Reservar online".
 2. **Terapia Diamagnética** (`#diamagnetica`, protagonista): las 5 ventajas
    reales listadas por el cliente, contador animado, foto de equipo.
 3. **Tratamientos manuales** (`#tratamientos`): sticky-stack de 4 paneles
@@ -96,7 +135,9 @@ en cada `figcaption`. IDs de Pexels usados: equipo `7789605`, manos
    `position:sticky` + scrub de GSAP ScrollTrigger, con fallback a scroll
    nativo con snap en móvil/reduced-motion) con los 9 equipos de
    electroterapia, cada uno con su propia firma de onda SVG revelada por
-   `stroke-dashoffset` al entrar en el track.
+   `stroke-dashoffset` al entrar en el track. El título viaja dentro del
+   bloque fijado; las tarjetas se encogen lejos del centro y la central se
+   marca; lectura «0N / 09» y rejilla de fondo con paralaje.
 5. **Seguros** (`#seguros`): chips Sanitas / Occidental / Mapfre + "otras compañías".
 6. **Reseñas** (`#resenas`): 5,0 ★ / 19 reseñas reales como dato grande;
    3 reseñas reales de Google (texto tal cual, solo limpieza ligera de
@@ -111,6 +152,43 @@ en cada `figcaption`. IDs de Pexels usados: equipo `7789605`, manos
 
 Divisor recurrente: una línea de señal SVG entre secciones que se aplana
 ("calma") o se agita ("tecnología") según el contenido que sigue.
+
+## Quitar el mando de maqueta antes de entregar
+
+El mando **solo aparece si la URL lleva `?revision`**. El enlace que se manda
+a la clienta, sin el parámetro, sale limpio, y sin `?revision` tampoco se
+aplica una densidad guardada.
+
+Dos densidades:
+
+- **Onda**: la onda en todas partes: canvas del hero, divisores de señal,
+  marquee, cursor «sintoniza», galería fijada, paneles apilados, grano.
+- **Sobria**: la onda solo donde significa algo (la firma de cada equipo).
+  Intercambia dibujo por dato: cifras reales en el hero (5,0 ★, 19 reseñas,
+  9 equipos, 4 tratamientos manuales), franja de datos de contacto en vez
+  del marquee, tecnología en cuadrícula quieta, paneles desapilados, sin
+  divisores ni grano.
+
+Pasos para borrarlo. Están comprobados por `scripts/comprobar-borrado.mjs`,
+que falla si queda algún rastro:
+
+1. `index.html`:
+   - En el `<script>` del `<head>`, borrar desde `/* la densidad guardada solo cuenta…` hasta el `} catch (e) {}` del final, y la mención `[MANDO DE MAQUETA]` de su comentario. **La red de seguridad de la cortina (`setTimeout` de 8 s) se queda.**
+   - Borrar el `<div class="mando">` del final con su comentario y el párrafo marcado en el diálogo de cookies.
+   - Quitar `densidad-onda` de la clase del `<html>`.
+   - Si la clienta elige **Onda**: borrar el `<ul class="hero-cifras">` y el `<div class="franja-datos">`.
+   - Si elige **Sobria**: antes de borrar, pasar sus reglas a CSS normal (quitar el prefijo `.densidad-sobria` en `style.css`), borrar el canvas del hero, el marquee, los divisores y el grano, y dejar cifras y franja.
+2. `css/style.css`: borrar todo lo que hay entre `[MANDO DE MAQUETA]` y `fin del bloque [MANDO DE MAQUETA]`.
+3. `js/main.js`: borrar la función `mandoMaqueta()` entre los mismos comentarios, la escucha de `densidad-cambiada` en `initTecnologia()`, la función `sobria()` con su uso en el cursor (o dejarla devolviendo `false`).
+4. `js/scene-onda.js`: la comprobación de `densidad-sobria` al arrancar (dejar solo `start()`).
+5. Pasar `node scripts/comprobar-borrado.mjs`.
+
+## Antes de publicar como web de la clínica
+
+- [ ] Resolver los pendientes de abajo (reserva, razón social/NIF, diatermia, aseguradoras).
+- [ ] Borrar el mando y pasar `comprobar-borrado.mjs`.
+- [ ] Quitar el `noindex` y cambiar `canonical`/`og:url` al dominio real.
+- [ ] `node scripts/versionar.mjs` y `node scripts/verify.js`.
 
 ## Lo que falta por confirmar con la clínica
 

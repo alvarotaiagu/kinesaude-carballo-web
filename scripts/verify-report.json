@@ -2,6 +2,31 @@
   "ok": true,
   "checks": [
     {
+      "name": "cortina: la línea cambia fotograma a fotograma (osciloscopio vivo)",
+      "pass": true,
+      "detail": "17 estados distintos"
+    },
+    {
+      "name": "cortina: empieza con ruido y se afina",
+      "pass": true,
+      "detail": "rugosidad 54.0 → 0.2"
+    },
+    {
+      "name": "cortina: la mitad de arriba se retira hacia arriba (se abre en dos)",
+      "pass": true,
+      "detail": "[394,193,0]"
+    },
+    {
+      "name": "cortina: no es del color del hero que destapa",
+      "pass": true,
+      "detail": "rgb(63, 92, 80)"
+    },
+    {
+      "name": "cortina: acaba en display:none y devuelve el scroll (pasada normal)",
+      "pass": true,
+      "detail": "{\"display\":\"none\",\"activa\":false,\"overflow\":\"visible\"}"
+    },
+    {
       "name": "sin errores JS en carga",
       "pass": true,
       "detail": ""
@@ -16,7 +41,21 @@
       "pass": true
     },
     {
+      "name": "titular del hero revelado tras la cortina",
+      "pass": true,
+      "detail": "opacity de la primera letra = 1"
+    },
+    {
+      "name": "títulos de sección grandes (≥ 56 px a 1440)",
+      "pass": true,
+      "detail": "#diamag-titulo:70 #trat-titulo:70 #tec-titulo:70 #seguros-titulo:70 #contacto-titulo:70"
+    },
+    {
       "name": "aviso de cookies visible en primera visita",
+      "pass": true
+    },
+    {
+      "name": "html.cookies-visibles mientras el aviso está",
       "pass": true
     },
     {
@@ -29,9 +68,47 @@
       "pass": true
     },
     {
+      "name": "sin ?revision el mando de maqueta no se ve",
+      "pass": true
+    },
+    {
+      "name": "cursor propio visible y el del sistema oculto",
+      "pass": true,
+      "detail": "{\"sistema\":\"none\",\"aro\":\"1\",\"punto\":\"0\",\"ancho\":\"84px\",\"texto\":\"sintoniza\",\"clase\":\"cursor cursor--vivo cursor--sintoniza\",\"bajo\":\"DIV.wrap hero-inner\",\"textoOp\":\"1\"}"
+    },
+    {
+      "name": "sobre el hero el aro crece y dice «sintoniza»",
+      "pass": true,
+      "detail": "{\"sistema\":\"none\",\"aro\":\"1\",\"punto\":\"0\",\"ancho\":\"84px\",\"texto\":\"sintoniza\",\"clase\":\"cursor cursor--vivo cursor--sintoniza\",\"bajo\":\"DIV.wrap hero-inner\",\"textoOp\":\"1\"}"
+    },
+    {
+      "name": "sobre un botón el aro se rellena, sin cursor del sistema",
+      "pass": true,
+      "detail": "{\"fondo\":\"rgba(143, 168, 155, 0.42)\",\"ancho\":\"56px\",\"sistema\":\"none\"}"
+    },
+    {
       "name": "CTAs del hero y cabecera reciben el clic",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "el contenido del hero se funde al bajar (scrub)",
+      "pass": true,
+      "detail": "{\"op\":0.5,\"y\":450}"
+    },
+    {
+      "name": "la cabecera se esconde al bajar y lleva barra de progreso",
+      "pass": true,
+      "detail": "{\"hidden\":true,\"progreso\":\"matrix(0.1077, 0, 0, 1, 0, 0)\"}"
+    },
+    {
+      "name": "la cabecera vuelve al subir",
+      "pass": true
+    },
+    {
+      "name": "la foto diamagnética se revela (clip a 0 %, escala vuelve a 1)",
+      "pass": true,
+      "detail": "{\"clip\":\"inset(0% 0px 0px)\",\"escala\":1}"
     },
     {
       "name": "mapa sin iframe antes del clic",
@@ -63,19 +140,108 @@
       "detail": "5/0/19/5,0"
     },
     {
-      "name": "sticky stack: la primera tarjeta cambia de escala al entrar la segunda",
+      "name": "las tres reseñas se han revelado",
       "pass": true,
-      "detail": "scale=0.940"
+      "detail": "1/1/1"
     },
     {
-      "name": "galería de tecnología: el track se desplaza dentro del pin",
+      "name": "una reseña se inclina con el ratón (3D)",
       "pass": true,
-      "detail": "-1228 -> -2563"
+      "detail": "matrix3d(0.998489, 0, -0.0549502, 0, 0.00258851, 0.99889, 0."
     },
     {
-      "name": "al menos una firma de onda se ha dibujado",
+      "name": "pila: ningún panel se suelta antes de que se pose el siguiente",
       "pass": true,
-      "detail": "dibujadas=8"
+      "detail": ""
+    },
+    {
+      "name": "pila: la de debajo se encoge cuando se posa la siguiente",
+      "pass": true
+    },
+    {
+      "name": "pila: al acabarse salen todas juntas",
+      "pass": true,
+      "detail": "diferencia de tops 0 px"
+    },
+    {
+      "name": "pila: el texto del primer panel se ha revelado",
+      "pass": true
+    },
+    {
+      "name": "galería: el track se desplaza dentro del pin",
+      "pass": true,
+      "detail": "0 -> -2048"
+    },
+    {
+      "name": "galería: el título sigue a la vista dentro del bloque fijado",
+      "pass": true,
+      "detail": "top=119"
+    },
+    {
+      "name": "galería: la lectura 0N / 09 avanza",
+      "pass": true,
+      "detail": "02 / 09 -> 07 / 09"
+    },
+    {
+      "name": "galería: hay una tarjeta central marcada y las lejanas se encogen",
+      "pass": true,
+      "detail": "0.88,0.88,0.88,0.88,0.89,0.95,1.00,0.94,0.88"
+    },
+    {
+      "name": "galería: firmas de onda dibujadas al pasar",
+      "pass": true,
+      "detail": "dibujadas=7"
+    },
+    {
+      "name": "galería: la rejilla tiene paralaje propio",
+      "pass": true,
+      "detail": "matrix(1, 0, 0, 1, -192.593, 0)"
+    },
+    {
+      "name": "mando: se aparta mientras el aviso de cookies está en pantalla",
+      "pass": true
+    },
+    {
+      "name": "mando: aparece al cerrar las cookies (lo enseña el JS)",
+      "pass": true
+    },
+    {
+      "name": "sobria: clase en <html>, canvas fuera, cifras dentro, franja en vez de marquee",
+      "pass": true,
+      "detail": "{\"clase\":\"con-movimiento lenis con-cursor densidad-sobria\",\"canvas\":\"none\",\"cifras\":\"grid\",\"marquee\":\"none\",\"franja\":\"block\",\"pin\":\"static\",\"track\":\"none\",\"panel\":\"relative\",\"ondas\":9,\"pulsado\":\"true\",\"sw\":1440}"
+    },
+    {
+      "name": "sobria: tecnología en cuadrícula quieta con las nueve firmas dibujadas, paneles desapilados",
+      "pass": true,
+      "detail": "{\"pin\":\"static\",\"track\":\"none\",\"panel\":\"relative\",\"ondas\":9}"
+    },
+    {
+      "name": "sobria: sin desbordamiento horizontal",
+      "pass": true,
+      "detail": "scrollWidth=1440"
+    },
+    {
+      "name": "sobria: la densidad elegida se aplica sin parpadeo al recargar",
+      "pass": true,
+      "detail": "densidad-sobria con-movimiento cortina-activa lenis lenis-stopped"
+    },
+    {
+      "name": "se puede volver a la densidad Onda (canvas y galería fijada de vuelta)",
+      "pass": true,
+      "detail": "{\"clase\":\"con-movimiento con-cursor densidad-onda lenis\",\"canvas\":\"block\",\"pin\":\"sticky\"}"
+    },
+    {
+      "name": "sin errores JS con el mando",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sin ?revision una densidad guardada no se aplica",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion: la cortina no aparece",
+      "pass": true
     },
     {
       "name": "reduced-motion: sin Lenis",
@@ -83,7 +249,13 @@
     },
     {
       "name": "reduced-motion: reveals ya visibles (opacity 1)",
-      "pass": true
+      "pass": true,
+      "detail": "{\"tune\":true,\"h1\":\"1\",\"panelTexto\":true,\"resenas\":true}"
+    },
+    {
+      "name": "reduced-motion: fotos sin recorte",
+      "pass": true,
+      "detail": "none"
     },
     {
       "name": "reduced-motion: marquee sin animación",
@@ -96,6 +268,21 @@
       "detail": "5/0/19/5,0"
     },
     {
+      "name": "sin GSAP: la cortina se retira igual y el scroll queda libre",
+      "pass": true,
+      "detail": "{\"cortina\":\"none\",\"bloqueado\":false}"
+    },
+    {
+      "name": "sin GSAP: la página se ve entera (titular, primera pantalla, fotos, paneles, firmas, reseñas)",
+      "pass": true,
+      "detail": "{\"cortina\":\"none\",\"bloqueado\":false,\"h1\":\"1\",\"clip\":\"none\",\"panelTexto\":true,\"ondas\":9,\"resenas\":true,\"apagados\":0}"
+    },
+    {
+      "name": "sin GSAP: sin errores JS",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "sin JS: contenido del hero visible",
       "pass": true
     },
@@ -104,8 +291,14 @@
       "pass": true
     },
     {
-      "name": "sin JS: canvas oculto (no rompe el layout)",
-      "pass": true
+      "name": "sin JS: canvas oculto y cortina inexistente",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "hero a 400×800: el texto no se mete bajo la cabecera",
+      "pass": true,
+      "detail": "{\"cab\":72,\"kicker\":164,\"h1\":208,\"acciones\":580,\"vh\":800}"
     },
     {
       "name": "sin scroll horizontal a 400 px",
@@ -118,9 +311,19 @@
       "detail": ""
     },
     {
-      "name": "menú móvil abre (flex) y cierra (none)",
+      "name": "paneles desapilados y con la foto entera a 400 px",
       "pass": true,
-      "detail": "flex/none"
+      "detail": "[{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true}]"
+    },
+    {
+      "name": "menú móvil abre a pantalla completa con la cabecera fija, y cierra",
+      "pass": true,
+      "detail": "{\"display\":\"flex\",\"alto\":800,\"vh\":800,\"top\":0,\"cabFija\":true} cerrado=none"
+    },
+    {
+      "name": "hero a 360×640: el texto no se mete bajo la cabecera",
+      "pass": true,
+      "detail": "{\"cab\":72,\"kicker\":104,\"h1\":147,\"acciones\":535,\"vh\":640}"
     },
     {
       "name": "sin scroll horizontal a 360 px",
@@ -131,19 +334,43 @@
       "name": "sin errores JS en móvil 360",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "paneles desapilados y con la foto entera a 360 px",
+      "pass": true,
+      "detail": "[{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true}]"
+    },
+    {
+      "name": "hero a 375×667: el texto no se mete bajo la cabecera",
+      "pass": true,
+      "detail": "{\"cab\":72,\"kicker\":104,\"h1\":147,\"acciones\":514,\"vh\":667}"
+    },
+    {
+      "name": "sin scroll horizontal a 375 px",
+      "pass": true,
+      "detail": "scrollWidth=375"
+    },
+    {
+      "name": "sin errores JS en móvil 375",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paneles desapilados y con la foto entera a 375 px",
+      "pass": true,
+      "detail": "[{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true},{\"pos\":\"relative\",\"dentro\":true}]"
     }
   ],
   "longtasks": {
-    "load": [
-      {
-        "d": 111,
-        "t": 429
-      }
-    ],
     "hero": [],
     "scroll": []
   },
   "screenshots": [
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\00a-cortina-ruido.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\00b-cortina-nombre.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\00c-cortina-se-abre.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\01a-cursor-hero.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-tecnologia-mitad.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-inicio.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-diamagnetica.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-tratamientos.png",
@@ -152,6 +379,10 @@
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-resenas.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-contacto.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\desktop-site-footer.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\sobria-inicio.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\sobria-tecnologia.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\sobria-tratamientos.png",
+    "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-menu.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-inicio.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-diamagnetica.png",
     "C:\\Users\\alvar\\Desktop\\WEBS NEGOCIOS\\kinesaude-carballo-web\\screenshots\\mobile-tratamientos.png",

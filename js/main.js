@@ -431,7 +431,7 @@
     const content = document.querySelector(".hero-content");
     const canvas = document.querySelector(".hero-canvas");
     const tags = Array.prototype.slice.call(document.querySelectorAll(".hero-tags .tag"));
-    const intro = Array.prototype.slice.call(document.querySelectorAll(".hero-actions .btn, .hero-readout span, .hero-tags .tag, .hero .kicker, .hero-lead"));
+    const intro = Array.prototype.slice.call(document.querySelectorAll(".hero-actions .btn, .hero-readout span, .hero-tags .tag, .hero .kicker, .hero-lead, .scroll-hint"));
     gsap.set(intro, { y: 18, opacity: 0 });
     alAbrirse(() => {
       gsap.to(intro, {
@@ -449,6 +449,7 @@
         scrollTrigger: Object.assign({ onUpdate: (self) => { if (window.kineOnda) window.kineOnda.setScroll(self.progress); } }, st),
       });
       if (canvas) gsap.to(canvas, { scale: 1.1, ease: "none", scrollTrigger: st });
+      gsap.to(".scroll-hint", { opacity: 0, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "22% top", scrub: true } });
     }
   }
 

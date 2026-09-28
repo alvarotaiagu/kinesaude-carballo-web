@@ -4,17 +4,17 @@
     {
       "name": "cortina: la línea cambia fotograma a fotograma (osciloscopio vivo)",
       "pass": true,
-      "detail": "17 estados distintos"
+      "detail": "16 estados distintos"
     },
     {
       "name": "cortina: empieza con ruido y se afina",
       "pass": true,
-      "detail": "rugosidad 54.0 → 0.2"
+      "detail": "rugosidad 26.1 → 0.2"
     },
     {
       "name": "cortina: la mitad de arriba se retira hacia arriba (se abre en dos)",
       "pass": true,
-      "detail": "[394,193,0]"
+      "detail": "[441,396,130]"
     },
     {
       "name": "cortina: no es del color del hero que destapa",

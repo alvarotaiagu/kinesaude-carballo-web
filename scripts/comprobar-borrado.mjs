@@ -22,7 +22,7 @@ const rastros = [
   ['js/main.js',    /mandoMaqueta/,          'la función mandoMaqueta()'],
   ['js/main.js',    /densidad-sobria/,       'la función sobria()'],
   ['js/main.js',    /densidad-cambiada/,     'las escuchas del evento densidad-cambiada'],
-  ['js/scene-onda.js', /densidad-sobria/,    'la comprobación de densidad al arrancar la onda'],
+  ['js/scene-puntos.js', /densidad-sobria/,  'la comprobación de densidad al arrancar la malla'],
 ];
 
 let quedan = 0;

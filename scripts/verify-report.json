@@ -9,12 +9,12 @@
     {
       "name": "cortina: empieza con ruido y se afina",
       "pass": true,
-      "detail": "rugosidad 26.1 → 0.2"
+      "detail": "rugosidad 46.2 → 0.3"
     },
     {
       "name": "cortina: la mitad de arriba se retira hacia arriba (se abre en dos)",
       "pass": true,
-      "detail": "[441,396,130]"
+      "detail": "[330,1,0]"
     },
     {
       "name": "cortina: no es del color del hero que destapa",

@@ -1,6 +1,6 @@
 /* GitHub Pages sirve CSS/JS con max-age=600: tras un push el navegador mezcla
    durante 10 minutos la hoja vieja con el HTML nuevo. Cada referencia a
-   css/style.css, js/main.js y js/scene-onda.js lleva ?v=<huella del contenido>;
+   css/style.css, js/main.js y js/scene-puntos.js lleva ?v=<huella del contenido>;
    este script la recalcula. Ejecutar antes de cada commit que toque CSS o JS.
 
    node scripts/versionar.mjs
@@ -15,7 +15,7 @@ const huella = (f) => crypto.createHash('sha1').update(fs.readFileSync(path.join
 const versiones = {
   'css/style.css': huella('css/style.css'),
   'js/main.js': huella('js/main.js'),
-  'js/scene-onda.js': huella('js/scene-onda.js'),
+  'js/scene-puntos.js': huella('js/scene-puntos.js'),
 };
 
 for (const pagina of ['index.html', '404.html']) {

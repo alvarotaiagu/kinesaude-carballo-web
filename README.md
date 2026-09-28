@@ -5,8 +5,8 @@ Plantilla nº 3 de la familia **fisioterapia** de la librería WEBS NEGOCIOS
 distinta de ambas: concepto **"Sintoniza con el bienestar"** — señal,
 frecuencia, onda. Grafito + un verde salvia + un acento terracota (paleta
 tomada del logo real del cliente, ver "Logo" abajo), tipografía Outfit +
-JetBrains Mono, hero de canvas con sinusoides interactivas (no partículas,
-no pinceladas, no agua), galería horizontal fijada para los 9 equipos de
+JetBrains Mono, hero de canvas con una malla de puntos que respira y se enciende cerca
+del cursor (no partículas, no pinceladas, no agua), galería horizontal fijada para los 9 equipos de
 electroterapia con una "firma de onda" SVG distinta por aparato, y la
 Terapia Diamagnética como sección protagonista propia.
 
@@ -36,12 +36,15 @@ datos; se cambió el acabado y el movimiento:
 - **Cursor propio.** Punto salvia + aro; sobre el hero el aro crece y dice
   «sintoniza», sobre enlaces y botones se rellena. El del sistema se oculta
   solo cuando el propio ya se ve (`html.con-cursor`); nada en táctil.
-- **Hero.** Siete ondas más gruesas y presentes, con brillo simulado (el
-  mismo trazo pintado ancho y tenue debajo, sin `filter` ni `shadowBlur`),
-  que se doblan hacia el cursor y se hunden y apagan con el scroll
-  (`kineOnda.setScroll`). Titular más grande y apretado con «bienestar» en
-  degradado vertical (por letra, para que el corte del char-reveal no se
-  note), etiquetas que flotan y salida del contenido con scrub.
+- **Hero.** Primero se reforzaron las ondas (siete, con brillo simulado);
+  la clienta no acabó convencida y el mismo día se sustituyeron por la
+  **malla de puntos** (`js/scene-puntos.js`): retícula salvia de 34 px con
+  una ola lenta, puntos que se encienden y crecen cerca del cursor, y que se
+  hunde y apaga con el scroll (`kineOnda.setScroll`, misma API que tenía la
+  onda). Los otros seis bocetos y las ondas originales están en
+  `../kinesaude-carballo-bocetos`. Titular más grande y apretado con
+  «bienestar» en degradado vertical (por letra, para que el corte del
+  char-reveal no se note), etiquetas que flotan y salida con scrub.
 - **Secciones.** Fotos con revelado por recorte (`clip-path`) y acercamiento;
   paneles con número gigante como marca de agua y texto escalonado al
   activarse; galería de tecnología con el título dentro del bloque fijado,
@@ -123,10 +126,10 @@ en cada `figcaption`. IDs de Pexels usados: equipo `7789605`, manos
 
 ## Estructura (propia, no calcada de AURA ni de Javi Teijeiro)
 
-1. **Hero** (`#inicio`): canvas de siete sinusoides superpuestas en salvia
-   que respiran despacio, se modulan y doblan hacia el cursor ("sintonizar")
-   y se hunden con el scroll; titular con char-reveal y degradado, etiquetas
-   mono que flotan y CTA magnético "Reservar online".
+1. **Hero** (`#inicio`): canvas con una malla de puntos salvia que respira
+   con una ola lenta y se enciende cerca del cursor ("sintonizar"), y que se
+   hunde con el scroll; titular con char-reveal y degradado, etiquetas mono
+   que flotan y CTA magnético "Reservar online".
 2. **Terapia Diamagnética** (`#diamagnetica`, protagonista): las 5 ventajas
    reales listadas por el cliente, contador animado, foto de equipo.
 3. **Tratamientos manuales** (`#tratamientos`): sticky-stack de 4 paneles
